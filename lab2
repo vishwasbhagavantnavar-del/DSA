@@ -1,0 +1,252 @@
+#include <stdio.h>
+
+#define MAX 5
+
+int stack[MAX];
+int top = -1;
+
+
+/* Function to push an element onto the stack */
+
+void push()
+{
+    int item;
+
+    if (top == MAX - 1)
+    {
+        printf(
+            "\nStack Overflow! Cannot push more elements.\n"
+        );
+
+        return;
+    }
+
+    printf(
+        "Enter the element to push: "
+    );
+
+    scanf(
+        "%d",
+        &item
+    );
+
+    top++;
+    stack[top] = item;
+
+    printf(
+        "%d pushed onto the stack.\n",
+        item
+    );
+}
+
+
+/* Function to pop an element from the stack */
+
+void pop()
+{
+    if (top == -1)
+    {
+        printf(
+            "\nStack Underflow! Stack is empty.\n"
+        );
+
+        return;
+    }
+
+    printf(
+        "Popped element: %d\n",
+        stack[top]
+    );
+
+    top--;
+}
+
+
+/* Function to demonstrate Stack Overflow */
+
+void demonstrateOverflow()
+{
+    while (top < MAX - 1)
+    {
+        top++;
+        stack[top] = top + 1;
+    }
+
+    printf(
+        "\nStack is full with %d elements.\n",
+        MAX
+    );
+
+    printf(
+        "Trying to push one more element...\n"
+    );
+
+    if (top == MAX - 1)
+    {
+        printf(
+            "Stack Overflow! Cannot push more elements.\n"
+        );
+    }
+}
+
+
+/* Function to demonstrate Stack Underflow */
+
+void demonstrateUnderflow()
+{
+    top = -1;
+
+    printf(
+        "\nStack is empty.\n"
+    );
+
+    printf(
+        "Trying to pop from an empty stack...\n"
+    );
+
+    if (top == -1)
+    {
+        printf(
+            "Stack Underflow! Stack is empty.\n"
+        );
+    }
+}
+
+
+/* Function to display the stack */
+
+void display()
+{
+    int i;
+
+    if (top == -1)
+    {
+        printf(
+            "\nStack is empty.\n"
+        );
+
+        return;
+    }
+
+    printf(
+        "\nStack elements are:\n"
+    );
+
+    for (i = top; i >= 0; i--)
+    {
+        printf(
+            "| %d |\n",
+            stack[i]
+        );
+    }
+
+    printf(
+        "-----\n"
+    );
+}
+
+
+/* Main function */
+
+int main()
+{
+    int choice;
+
+    while (1)
+    {
+        printf(
+            "\n========== STACK MENU ==========\n"
+        );
+
+        printf(
+            "1. Push an Element\n"
+        );
+
+        printf(
+            "2. Pop an Element\n"
+        );
+
+        printf(
+            "3. Demonstrate Overflow\n"
+        );
+
+        printf(
+            "4. Demonstrate Underflow\n"
+        );
+
+        printf(
+            "5. Display Stack\n"
+        );
+
+        printf(
+            "6. Exit\n"
+        );
+
+        printf(
+            "================================\n"
+        );
+
+        printf(
+            "Enter your choice: "
+        );
+
+        scanf(
+            "%d",
+            &choice
+        );
+
+
+        switch (choice)
+        {
+            case 1:
+
+                push();
+
+                break;
+
+
+            case 2:
+
+                pop();
+
+                break;
+
+
+            case 3:
+
+                demonstrateOverflow();
+
+                break;
+
+
+            case 4:
+
+                demonstrateUnderflow();
+
+                break;
+
+
+            case 5:
+
+                display();
+
+                break;
+
+
+            case 6:
+
+                printf(
+                    "\nExiting program...\n"
+                );
+
+                return 0;
+
+
+            default:
+
+                printf(
+                    "\nInvalid choice! Please try again.\n"
+                );
+        }
+    }
+}
